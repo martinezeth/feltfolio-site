@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FeltFolio</title>
+<style>
+  :root { --felt:#1E4A3A; --ink:#1B221E; --faint:#6B6F69; --paper:#FAF7F0; --brass:#A88434; --rule:#E4DFD3; }
+  @media (prefers-color-scheme: dark) { :root { --felt:#143128; --ink:#F2EFE6; --faint:#8FA098; --paper:#0E1B16; --brass:#C9A24B; --rule:#24382F; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:680px; margin:0 auto; padding:56px 24px 80px; }
+  h1 { font-family:"New York","Iowan Old Style",Georgia,serif; font-size:40px; margin:0 0 6px; }
+  h2 { font-family:"New York","Iowan Old Style",Georgia,serif; font-size:24px; margin:44px 0 10px; }
+  p, li { color:var(--ink); }
+  .tag { color:var(--faint); font-size:15px; margin:0 0 28px; }
+  .mark { display:inline-block; width:22px; height:22px; border:2px dashed var(--brass); border-radius:50%; vertical-align:-3px; margin-right:10px; background:radial-gradient(circle, var(--felt) 45%, transparent 46%); }
+  nav a { color:var(--brass); text-decoration:none; margin-right:18px; font-size:15px; }
+  hr { border:0; border-top:1px solid var(--rule); margin:40px 0; }
+  .muted { color:var(--faint); font-size:14px; }
+  a { color:var(--brass); }
+</style>
+</head>
+<body>
+<main>
+  <h1><span class="mark"></span>FeltFolio</h1>
+  <p class="tag">A private ledger for casino sessions. iPhone. By ForestBase.</p>
+  <nav><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Service</a><a href="mailto:support@feltfolio.app">Support</a></nav>
+
+  <hr>
+  <p>FeltFolio is a tracking tool. It does not facilitate, offer, or endorse gambling. If gambling is a problem for you or someone you know, the National Problem Gambling Helpline is free and confidential, 24/7: <strong>1-800-GAMBLER</strong>.</p>
+
+  <h2 id="privacy">Privacy Policy</h2>
+  <p class="muted">Effective August 25, 2026</p>
+  <p><strong>What we collect.</strong> Your email address and, if you choose to provide it, a display name — used to create and secure your account. The session and game records you enter (casino, amounts, times), stored so you can access them across your devices. If you use "Find casinos near me," your location is used on your device at that moment and is not stored or transmitted.</p>
+  <p><strong>How we use it.</strong> Solely to provide the app: storing your records, showing your statistics, and generating reports you request. We do not sell personal data, and we do not use it for advertising.</p>
+  <p><strong>Where it lives.</strong> Data is stored with our hosting provider (Supabase, in the United States) and protected by access controls so that only your account can read your records. Sign-in with Google, if you use it, is handled by Google under Google's own policies.</p>
+  <p><strong>Your control.</strong> You can edit or delete individual sessions in the app, export your records at any time, and delete your entire account from Settings — deletion permanently removes all of your data.</p>
+  <p><strong>Contact.</strong> <a href="mailto:support@feltfolio.app">support@feltfolio.app</a>.</p>
+
+  <h2 id="terms">Terms of Service</h2>
+  <p class="muted">Effective August 25, 2026</p>
+  <p><strong>The service.</strong> FeltFolio ("the app") is provided by ForestBase LLC ("we"). It is a personal record-keeping tool. It does not facilitate gambling, accept or pay wagers, or provide gambling, financial, tax, or legal advice.</p>
+  <p><strong>Your records.</strong> Everything in the app is based on information you enter. You are responsible for its accuracy. Reports, statistics, and exports are generated from your entries and are provided for your personal records only; they may contain errors or omissions. Consult a qualified professional before relying on them for any tax, legal, or financial purpose.</p>
+  <p><strong>No warranties; limitation of liability.</strong> The app is provided "as is" and "as available," without warranties of any kind. To the fullest extent permitted by law, ForestBase LLC is not liable for any loss or damage arising from your use of the app or reliance on its output, including any gambling losses, and our total liability shall not exceed the amount you paid us in the twelve months before the claim.</p>
+  <p><strong>Eligibility and conduct.</strong> You must be of legal age to gamble where you live to use the app, and you agree to use it lawfully. We may suspend accounts that abuse the service.</p>
+  <p><strong>Subscriptions.</strong> Optional Premium features are sold through Apple. Billing, renewal, and refunds are governed by Apple's terms; cancel anytime in your Apple account settings.</p>
+  <p><strong>Changes.</strong> We may update these terms; the app will ask you to accept material changes. Continued use after acceptance constitutes agreement.</p>
+  <p><strong>Contact.</strong> ForestBase LLC · <a href="mailto:support@feltfolio.app">support@feltfolio.app</a>.</p>
+
+  <hr>
+  <p class="muted">© 2026 ForestBase LLC. FeltFolio is a tracking tool and does not endorse gambling.</p>
+</main>
+</body>
+</html>
