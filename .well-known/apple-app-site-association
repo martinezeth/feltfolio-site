@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["6QK6ZNF5P8.com.feltfolio.ios"],
+        "components": [
+          { "/": "/auth/*", "comment": "Auth links (email confirmation, recovery) open the app" }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["6QK6ZNF5P8.com.feltfolio.ios"]
+  }
+}
