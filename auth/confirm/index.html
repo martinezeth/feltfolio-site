@@ -37,6 +37,14 @@
       "Open the link from your email again, or request a new one from the app.");
     return;
   }
+  if (type === "recovery") {
+    // Never verify a recovery token here: it is single-use, and only the
+    // app can offer the set-new-password screen. Spending it on this page
+    // would strand the user.
+    show("Open this link on your iPhone.",
+      "Password reset finishes in the FeltFolio app — open the email on the phone that has FeltFolio installed and tap the link there.");
+    return;
+  }
   fetch("https://bmtjvhpyanhxxrhvwwij.supabase.co/auth/v1/verify", {
     method: "POST",
     headers: { "Content-Type": "application/json", "apikey": "sb_publishable_b7cDRq0SAfv3t4al45FIcw_IsFpdOis" },
