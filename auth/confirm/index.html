@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="no-referrer">
+<script>
+// Remove credentials before any subresources load. Retain only in page memory.
+const authLinkInput = { search: location.search, hash: location.hash };
+history.replaceState(null, "", location.pathname);
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>FeltFolio — Confirm</title>
@@ -23,16 +29,21 @@
   <h1><span class="mark"></span>FeltFolio</h1>
   <p id="status" class="status">Confirming…</p>
   <p id="detail"></p>
+  <button id="confirm" type="button" hidden>Confirm email</button>
 </main>
 <script>
 (function () {
-  var q = new URLSearchParams(location.search);
+  var q = new URLSearchParams(authLinkInput.search);
   var tokenHash = q.get("token_hash");
-  var type = q.get("type") || "email";
+  var type = q.get("type");
+  authLinkInput.search = "";
   var status = document.getElementById("status");
   var detail = document.getElementById("detail");
   function show(s, d) { status.textContent = s; detail.innerHTML = d || ""; }
-  if (!tokenHash) {
+  if (authLinkInput.hash || q.getAll("token_hash").length !== 1 || q.getAll("type").length !== 1 ||
+      Array.from(q.keys()).some(function (key) { return key !== "type" && key !== "token_hash"; }) ||
+      !/^[A-Za-z0-9_-]{16,1024}$/.test(tokenHash || "") ||
+      ["signup", "email_change", "recovery"].indexOf(type) === -1) {
     show("This link is incomplete.",
       "Open the link from your email again, or request a new one from the app.");
     return;
@@ -41,17 +52,23 @@
     // Never verify a recovery token here: it is single-use, and only the
     // app can offer the set-new-password screen. Spending it on this page
     // would strand the user.
-    show("Open this link on your iPhone.",
+    show("Open this link in FeltFolio.",
       "Password reset finishes in the FeltFolio app — open the email on the phone that has FeltFolio installed and tap the link there.");
     return;
   }
+  show("Confirm your email.", "Continue only if you requested this confirmation.");
+  var confirm = document.getElementById("confirm");
+  confirm.hidden = false;
+  confirm.addEventListener("click", function () {
+  confirm.disabled = true;
+  show("Confirming…", "");
   fetch("https://bmtjvhpyanhxxrhvwwij.supabase.co/auth/v1/verify", {
     method: "POST",
     headers: { "Content-Type": "application/json", "apikey": "sb_publishable_b7cDRq0SAfv3t4al45FIcw_IsFpdOis" },
     body: JSON.stringify({ type: type, token_hash: tokenHash })
   }).then(function (r) {
     if (r.ok) {
-      show(type === "recovery" ? "Link verified." : "Email confirmed.",
+      show("Email confirmed.",
         "You're all set — open FeltFolio on your iPhone and sign in.");
     } else {
       return r.json().catch(function () { return {}; }).then(function (b) {
@@ -62,8 +79,10 @@
       });
     }
   }).catch(function () {
-    show("Couldn't reach the server.", "Check your connection and reload this page.");
+    show("Couldn't reach the server.", "Check your connection, then open the original email link again.");
   });
+  tokenHash = null;
+  }, { once: true });
 })();
 </script>
 </body>
