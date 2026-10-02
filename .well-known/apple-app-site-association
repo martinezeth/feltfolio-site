@@ -2,14 +2,25 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["6QK6ZNF5P8.com.feltfolio.ios"],
+        "appIDs": [
+          "6QK6ZNF5P8.com.feltfolio.ios"
+        ],
         "components": [
-          { "/": "/auth/*", "comment": "Auth links (email confirmation, recovery) open the app" }
+          {
+            "/": "/auth/*",
+            "comment": "Auth links (email confirmation, recovery) open the app"
+          },
+          {
+            "/": "/crew/join/",
+            "comment": "Crew invitations open a review screen; never automatic membership"
+          }
         ]
       }
     ]
   },
   "webcredentials": {
-    "apps": ["6QK6ZNF5P8.com.feltfolio.ios"]
+    "apps": [
+      "6QK6ZNF5P8.com.feltfolio.ios"
+    ]
   }
 }

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-g48rclsgrjhknTwc19rx1rPBc9s5zMrPbz8V7CJoVkY='; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; connect-src 'none'">
+<script>const incoming = { hash: location.hash, search: location.search };
+history.replaceState(null, "", location.pathname);
+window.addEventListener("DOMContentLoaded", () => {
+  const valid = location.protocol === "https:" && location.hostname === "feltfolio.app"
+    && (location.port === "" || location.port === "443") && location.pathname === "/crew/join/"
+    && incoming.search === "" && /^#token=[a-f0-9]{64}$/.test(incoming.hash);
+  const button = document.getElementById("copy");
+  const status = document.getElementById("status");
+  if (!valid) { status.textContent = "This invitation is incomplete. Ask the host for a new code or link."; return; }
+  const link = "https://feltfolio.app/crew/join/" + incoming.hash;
+  button.hidden = false;
+  button.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(link); status.textContent = "Invitation copied. Open FeltFolio, choose Crew Sessions, and paste it into Invite code or link."; }
+    catch (_) { const field = document.getElementById("manual"); field.value = link; field.hidden = false; field.focus(); field.select(); status.textContent = "Copy the invitation below, then paste it into Crew Sessions in FeltFolio."; }
+  });
+});</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>FeltFolio — Crew invitation</title>
+<style>
+:root {color-scheme:light dark;--bg:#FAF7F0;--ink:#1B221E;--accent:#775817}
+@media(prefers-color-scheme:dark){:root{--bg:#0E1B16;--ink:#F6F2E7;--accent:#D4AE58}}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 system-ui,sans-serif}
+main{max-width:36rem;padding:3rem 1.5rem;margin:auto}h1{font-family:Georgia,serif;line-height:1.2}
+a{color:var(--accent)}button{font:inherit;min-height:48px;padding:.7rem 1.2rem;color:var(--bg);background:var(--ink);border:2px solid var(--ink);border-radius:8px}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+textarea{box-sizing:border-box;width:100%;font:inherit;min-height:7rem}nav{display:flex;flex-wrap:wrap;gap:1rem;margin-top:3rem}nav a{display:inline-flex;align-items:center;min-height:44px}
+[hidden]{display:none!important}
+</style></head><body><main>
+<h1>You’re invited to a Crew Session</h1>
+<p>Open this invitation on your phone with FeltFolio installed. You’ll sign in and review what you share before joining.</p>
+<p id="status" role="status" aria-live="polite">If the app did not open, copy this invitation and paste it into Crew Sessions in FeltFolio.</p>
+<button id="copy" type="button" hidden>Copy invitation</button>
+<textarea id="manual" aria-label="Invitation link to copy" readonly hidden></textarea>
+<noscript>JavaScript is off. Ask the host for the invitation code and enter it in Crew Sessions in FeltFolio.</noscript>
+<p>Only share this invitation with people you want in the Crew. No session details are displayed on this page.</p>
+<nav aria-label="Legal and support"><a href="/#terms">Terms of Service</a><a href="/#privacy">Privacy Policy</a><a href="mailto:support@feltfolio.app">Support</a></nav>
+</main></body></html>
